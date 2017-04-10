@@ -1,6 +1,6 @@
 import unittest
 
-from post_code import PostCodeUK
+from .post_code import PostCodeUK
 
 
 class TestPostCodeUK(unittest.TestCase):
