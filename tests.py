@@ -52,9 +52,19 @@ class TestPostCodeUK(unittest.TestCase):
         post_code = 'A9 9A1'
         self.assertFalse(_valid_last_3_positions(post_code))
 
+    def test_verify_not_allowed_letters_in_last_position(self):
+        for letter in ['C', 'I', 'K', 'M', 'O', 'V']:
+            post_code = "AA9A 9A{0}".format(letter)
+            self.assertFalse(_valid_last_3_positions(post_code))
+
     def test_verify_have_number_in_penultimate_position(self):
         post_code = 'A9 91A'
         self.assertFalse(_valid_last_3_positions(post_code))
+
+    def test_verify_not_allowed_letters_in_penultimate_position(self):
+        for letter in ['C', 'I', 'K', 'M', 'O', 'V']:
+            post_code = "AA9A 9{0}A".format(letter)
+            self.assertFalse(_valid_last_3_positions(post_code))
 
     def test_verify_have_letter_in_antepenultimate_position(self):
         post_code = 'A9 AAA'

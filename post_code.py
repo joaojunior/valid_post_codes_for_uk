@@ -17,10 +17,13 @@ def _valid_space_position(post_code):
 def _valid_last_3_positions(post_code):
     """
     The last 3 positions have the format: 9AA, where
-    9 represent one digit and A represent one letter
+    9 represent one digit and A represent one letter.
+    The final two letters do not use the letters CIKMOV
     """
-    result = (post_code[-1].isalpha() and post_code[-2].isalpha()
-              and post_code[-3].isdigit())
+    not_allowed = ['C', 'I', 'K', 'M', 'O', 'V']
+    result = (post_code[-1].isalpha() and post_code[-1] not in not_allowed and
+              post_code[-2].isalpha() and post_code[-2] not in not_allowed and
+              post_code[-3].isdigit())
     return result
 
 
