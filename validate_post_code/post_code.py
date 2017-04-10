@@ -1,6 +1,6 @@
 class PostCodeUK():
     def validate_post_code_for_uk(self, post_code):
-        self.post_code = post_code
+        self.post_code = post_code.upper()
         return (self._valid_size() and
                 self._valid_space_position() and
                 self._valid_last_3_positions() and
