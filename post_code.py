@@ -22,3 +22,15 @@ def _valid_last_3_positions(post_code):
     result = (post_code[-1].isalpha() and post_code[-2].isalpha()
               and post_code[-3].isdigit())
     return result
+
+
+def _verify_first_position(post_code):
+    """
+    The first position is not a number
+    The letters QVX are not used in the first position
+    """
+    not_allowed = ('Q', 'V', 'X')
+    result = post_code[0].isalpha()
+    if post_code[0] in not_allowed:
+        result = False
+    return result

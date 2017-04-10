@@ -1,7 +1,7 @@
 import unittest
 
 from post_code import (_valid_size, _valid_space_position,
-                       _valid_last_3_positions)
+                       _valid_last_3_positions, _verify_first_position)
 
 
 class TestPostCodeUK(unittest.TestCase):
@@ -57,6 +57,26 @@ class TestPostCodeUK(unittest.TestCase):
     def test_verify_have_letter_in_antepenultimate_position(self):
         post_code = 'A9 AAA'
         self.assertFalse(_valid_last_3_positions(post_code))
+
+    def test_verify_first_position_is_letter(self):
+        post_code = self.post_code_size_6
+        self.assertTrue(_verify_first_position(post_code))
+
+    def test_verify_first_position_is_not_letter(self):
+        post_code = '99 9AA'
+        self.assertFalse(_verify_first_position(post_code))
+
+    def test_verify_first_position_is_not_Q(self):
+        post_code = 'Q9 9AA'
+        self.assertFalse(_verify_first_position(post_code))
+
+    def test_verify_first_position_is_not_V(self):
+        post_code = 'V9 9AA'
+        self.assertFalse(_verify_first_position(post_code))
+
+    def test_verify_first_position_is_not_X(self):
+        post_code = 'X9 9AA'
+        self.assertFalse(_verify_first_position(post_code))
 
 
 if __name__ == '__main__':
