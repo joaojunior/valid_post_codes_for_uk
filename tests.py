@@ -3,7 +3,7 @@ import unittest
 from post_code import (_valid_size, _valid_space_position,
                        _valid_last_3_positions, _verify_first_position,
                        _verify_second_position, _verify_third_position,
-                       _verify_fourth_position)
+                       _verify_fourth_position, validate_post_code_for_uk)
 
 
 class TestPostCodeUK(unittest.TestCase):
@@ -146,6 +146,22 @@ class TestPostCodeUK(unittest.TestCase):
         for letter in allowed:
             post_code = 'AA9{0} 9AA'.format(letter)
             self.assertTrue(_verify_fourth_position(post_code))
+
+    def test_verify_post_code_with_size_6_is_correct(self):
+        post_code = self.post_code_size_6
+        self.assertTrue(validate_post_code_for_uk(post_code))
+
+    def test_verify_post_code_with_size_7_is_correct(self):
+        post_code = self.post_code_size_7
+        self.assertTrue(validate_post_code_for_uk(post_code))
+
+    def test_verify_post_code_with_size_8_is_correct(self):
+        post_code = self.post_code_size_8
+        self.assertTrue(validate_post_code_for_uk(post_code))
+
+    def test_verify_post_code_is_incorrect(self):
+        post_code = 'AAAA AAA'
+        self.assertFalse(validate_post_code_for_uk(post_code))
 
 
 if __name__ == '__main__':

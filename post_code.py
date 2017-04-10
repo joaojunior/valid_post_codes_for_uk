@@ -1,3 +1,13 @@
+def validate_post_code_for_uk(post_code):
+    return (_valid_size(post_code) and
+            _valid_space_position(post_code) and
+            _valid_last_3_positions(post_code) and
+            _verify_first_position(post_code) and
+            _verify_second_position(post_code) and
+            _verify_third_position(post_code) and
+            _verify_fourth_position(post_code))
+
+
 def _valid_size(post_code):
     result = True
     size = len(post_code)
