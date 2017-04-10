@@ -49,6 +49,10 @@ def _verify_second_position(post_code):
 
 
 def _verify_third_position(post_code):
+    """
+    The only letters to appear in the third position are
+    ABCDEFGHJKPSTUW when the structure starts with A9A.
+    """
     allowed = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'P', 'S', 'T',
                'U', 'W']
     result = True
@@ -58,6 +62,10 @@ def _verify_third_position(post_code):
 
 
 def _verify_fourth_position(post_code):
+    """
+    The only letters to appear in the fourth position are
+    ABEHMNPRVWXY when the structure starts with AA9A.
+    """
     allowed = ['A', 'B', 'E', 'H', 'M', 'N', 'P', 'R', 'V', 'W', 'X', 'Y']
     result = True
     if post_code[3].isalpha():
