@@ -5,3 +5,4 @@ isort
 nose
 radon
 flask
+gunicorn
