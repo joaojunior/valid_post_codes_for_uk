@@ -6,6 +6,17 @@ app = Flask(__name__)
 post_code_validator = PostCodeUK()
 
 
+@app.route('/')
+def main():
+    result = """This app validate the post code for uk. Access /code, where
+              code is the post_code that you want to validate.\n
+              For example /EC1A 1BB to verify is the post code EC1A 1BB
+              is valid.\n
+              You can get more details about post code in uk here:
+              https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom"""
+    return result
+
+
 @app.route('/<post_code>')
 def validate_post_code(post_code):
     post_code = post_code.strip()
