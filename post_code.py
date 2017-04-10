@@ -55,3 +55,11 @@ def _verify_third_position(post_code):
     if post_code[2].isalpha():
         result = post_code[2] in allowed
     return result
+
+
+def _verify_fourth_position(post_code):
+    allowed = ['A', 'B', 'E', 'H', 'M', 'N', 'P', 'R', 'V', 'W', 'X', 'Y']
+    result = True
+    if post_code[3].isalpha():
+        result = post_code[3] in allowed
+    return result
