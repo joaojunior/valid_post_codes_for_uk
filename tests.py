@@ -1,7 +1,8 @@
 import unittest
 
 from post_code import (_valid_size, _valid_space_position,
-                       _valid_last_3_positions, _verify_first_position)
+                       _valid_last_3_positions, _verify_first_position,
+                       _verify_second_position)
 
 
 class TestPostCodeUK(unittest.TestCase):
@@ -77,6 +78,26 @@ class TestPostCodeUK(unittest.TestCase):
     def test_verify_first_position_is_not_X(self):
         post_code = 'X9 9AA'
         self.assertFalse(_verify_first_position(post_code))
+
+    def test_verify_second_position_is_not_letter(self):
+        post_code = self.post_code_size_6
+        self.assertTrue(_verify_second_position(post_code))
+
+    def test_verify_second_position_is_letter(self):
+        post_code = self.post_code_size_7
+        self.assertTrue(_verify_second_position(post_code))
+
+    def test_verify_second_position_is_I(self):
+        post_code = 'AI 9AA'
+        self.assertFalse(_verify_second_position(post_code))
+
+    def test_verify_second_position_is_J(self):
+        post_code = 'AJ 9AA'
+        self.assertFalse(_verify_second_position(post_code))
+
+    def test_verify_second_position_is_Z(self):
+        post_code = 'AZ 9AA'
+        self.assertFalse(_verify_second_position(post_code))
 
 
 if __name__ == '__main__':

@@ -34,3 +34,15 @@ def _verify_first_position(post_code):
     if post_code[0] in not_allowed:
         result = False
     return result
+
+
+def _verify_second_position(post_code):
+    """
+    The second position is a number or a letter
+    The letters IJZ are not used in the second position
+    """
+    result = post_code[1].isalpha() or post_code[1].isdigit()
+    not_allowed = ('I', 'J', 'Z')
+    if post_code[1] in not_allowed:
+        result = False
+    return result
