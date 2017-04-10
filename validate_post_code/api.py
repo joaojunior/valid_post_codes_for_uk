@@ -1,5 +1,4 @@
-from flask import abort
-from flask import Flask
+from flask import Flask, abort
 
 from post_code import PostCodeUK
 
