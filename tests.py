@@ -2,7 +2,7 @@ import unittest
 
 from post_code import (_valid_size, _valid_space_position,
                        _valid_last_3_positions, _verify_first_position,
-                       _verify_second_position)
+                       _verify_second_position, _verify_third_position)
 
 
 class TestPostCodeUK(unittest.TestCase):
@@ -98,6 +98,25 @@ class TestPostCodeUK(unittest.TestCase):
     def test_verify_second_position_is_Z(self):
         post_code = 'AZ 9AA'
         self.assertFalse(_verify_second_position(post_code))
+
+    def test_verify_third_position_is_space(self):
+        post_code = 'A9 9AA'
+        self.assertTrue(_verify_third_position(post_code))
+
+    def test_verify_third_position_is_digit(self):
+        post_code = 'A99 9AA'
+        self.assertTrue(_verify_third_position(post_code))
+
+    def test_verify_third_position_is_letter_and_incorrect(self):
+        post_code = 'A9Z 9AA'
+        self.assertFalse(_verify_third_position(post_code))
+
+    def test_verify_third_position_is_letter_and_correct(self):
+        allowed = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'P', 'S',
+                   'T', 'U', 'W']
+        for letter in allowed:
+            post_code = 'A9{0} 9AA'.format(letter)
+            self.assertTrue(_verify_third_position(post_code))
 
 
 if __name__ == '__main__':

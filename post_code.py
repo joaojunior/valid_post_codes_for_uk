@@ -46,3 +46,12 @@ def _verify_second_position(post_code):
     if post_code[1] in not_allowed:
         result = False
     return result
+
+
+def _verify_third_position(post_code):
+    allowed = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'P', 'S', 'T',
+               'U', 'W']
+    result = post_code[2] == ' ' or post_code[2].isdigit()
+    if post_code[2].isalpha():
+        result = post_code[2] in allowed
+    return result
