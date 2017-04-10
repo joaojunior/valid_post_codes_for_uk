@@ -12,3 +12,13 @@ def _valid_space_position(post_code):
     if post_code[size - 4] != ' ':
         result = False
     return result
+
+
+def _valid_last_3_positions(post_code):
+    """
+    The last 3 positions have the format: 9AA, where
+    9 represent one digit and A represent one letter
+    """
+    result = (post_code[-1].isalpha() and post_code[-2].isalpha()
+              and post_code[-3].isdigit())
+    return result

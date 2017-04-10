@@ -1,6 +1,7 @@
 import unittest
 
-from post_code import _valid_size, _valid_space_position
+from post_code import (_valid_size, _valid_space_position,
+                       _valid_last_3_positions)
 
 
 class TestPostCodeUK(unittest.TestCase):
@@ -40,6 +41,22 @@ class TestPostCodeUK(unittest.TestCase):
     def test_verify_space_position_is_out_of_range(self):
         post_code = 'AA9A9O U'
         self.assertFalse(_valid_space_position(post_code))
+
+    def test_verify_last_3_positions_is_correct(self):
+        post_code = self.post_code_size_6
+        self.assertTrue(_valid_last_3_positions(post_code))
+
+    def test_verify_have_number_in_last_position(self):
+        post_code = 'A9 9A1'
+        self.assertFalse(_valid_last_3_positions(post_code))
+
+    def test_verify_have_number_in_penultimate_position(self):
+        post_code = 'A9 91A'
+        self.assertFalse(_valid_last_3_positions(post_code))
+
+    def test_verify_have_letter_in_antepenultimate_position(self):
+        post_code = 'A9 AAA'
+        self.assertFalse(_valid_last_3_positions(post_code))
 
 
 if __name__ == '__main__':
