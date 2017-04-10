@@ -1,13 +1,13 @@
 from flask import abort
 from flask import Flask
 
-from validate_post_code.post_code import PostCodeUK
+from post_code import PostCodeUK
 
 app = Flask(__name__)
 post_code_validator = PostCodeUK()
 
 
-@app.route('/validate/<post_code>')
+@app.route('/<post_code>')
 def validate_post_code(post_code):
     post_code = post_code.strip()
     result = post_code_validator.validate_post_code_for_uk(post_code)
